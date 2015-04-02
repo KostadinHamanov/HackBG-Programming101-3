@@ -77,8 +77,7 @@ class CashDesk:
                     money_holder[batch] = 1
 
         print ("We have a total of {}$ in the desk".format(self.total()))
-        print (
-            "We have the following count of bills")
+        print ("We have the following count of bills")
         print (money_holder)
 
 
