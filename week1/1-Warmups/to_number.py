@@ -2,7 +2,7 @@ def to_number(digits):
     result = [str(x) for x in digits]
     str_result = "".join(result)
 
-    return str_result
+    return int(str_result)
 
 
 def main():

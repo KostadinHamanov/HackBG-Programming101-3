@@ -17,7 +17,7 @@ def fib_number(n):
     for element in fibonacci_list:
         result += str(element)
 
-    return result
+    return int(result)
 
 
 def main():

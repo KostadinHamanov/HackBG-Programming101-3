@@ -1,10 +1,5 @@
 def to_digits(n):
-    list_of_digits = []
-    number = str(n)
-    for digit in number:
-        list_of_digits.append(digit)
-
-    return list_of_digits
+    return [int(x) for x in str(n)]
 
 
 def main():
