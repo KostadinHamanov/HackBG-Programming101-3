@@ -1,7 +1,5 @@
 from datetime import date
 
-# Count words
-
 
 def count_words(arr):
     words = {}
@@ -12,11 +10,6 @@ def count_words(arr):
             words[word] = 1
 
     return words
-
-# print (count_words(["apple", "banana", "apple", "pie"]))
-# print (count_words(["python", "python", "python", "ruby"]))
-
-# Unique words
 
 
 def unique_words_count(arr):
@@ -34,24 +27,11 @@ def unique_words_count(arr):
 
     return count
 
-# print (unique_words_count(["apple", "banana", "apple", "pie"]))
-# print (unique_words_count(["python", "python", "python", "ruby"]))
-# print (unique_words_count(["HELLO!"] * 10))
-
-# NaN Expand
-
 
 def nan_expand(times):
     if times < 1:
         return ""
     return "Not a " * times + "NaN"
-
-# print (nan_expand(0))
-# print (nan_expand(1))
-# print (nan_expand(2))
-# print (nan_expand(3))
-
-# Iterations of NaN Expand
 
 
 def iterations_of_nan_expand(expanded):
@@ -74,15 +54,6 @@ def iterations_of_nan_expand(expanded):
         return False
 
     return count
-
-# print (iterations_of_nan_expand(""))
-# print (iterations_of_nan_expand("Not a NaN   "))
-# print (iterations_of_nan_expand("Not a NaN"))
-# print (iterations_of_nan_expand
-#        ('Not a Not a Not a Not a Not a Not a Not a Not a Not a Not a NaN'))
-# print (iterations_of_nan_expand("Show these people!"))
-
-# Integer prime factorization
 
 
 def is_prime(n):
@@ -123,14 +94,6 @@ def prime_factorization(n):
 
     return result
 
-# print (prime_factorization(10))
-# print (prime_factorization(14))
-# print (prime_factorization(356))
-# print (prime_factorization(89))
-# print (prime_factorization(1000))
-
-# The group function
-
 
 def take_same(items):
     first = items[0]
@@ -156,20 +119,10 @@ def group(items):
 
     return result
 
-# print (group([1, 1, 1, 2, 3, 1, 1]))
-# print (group([1, 2, 1, 2, 3, 3]))
-
-# Longest subsequence of equal consecutive elements
-
 
 def max_consecutive(items):
     grouped = group(items)
     return max(len(array) for array in grouped)
-
-# print (max_consecutive([1, 2, 3, 3, 3, 3, 4, 3, 3]))
-# print (max_consecutive([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5]))
-
-# Group By
 
 
 def groupby(func, seq):
@@ -183,14 +136,6 @@ def groupby(func, seq):
             result[key] = [number]
 
     return result
-
-# print (groupby(lambda x: x % 2, [0, 1, 2, 3, 4, 5, 6, 7]))
-# print (groupby(lambda x: 'odd' if x % 2 else 'even',
-#                [1, 2, 3, 5, 8, 9, 10, 12]))
-# print (groupby(lambda x: x % 3, [0, 1, 2, 3, 4, 5, 6, 7]))
-
-
-# Spam and Eggs
 
 
 def prepare_meal(number):
@@ -211,15 +156,6 @@ def prepare_meal(number):
         return "eggs"
     else:
         return ""
-
-# print (prepare_meal(5))
-# print (prepare_meal(3))
-# print (prepare_meal(27))
-# print (prepare_meal(15))
-# print (prepare_meal(45))
-# print (prepare_meal(7))
-
-# Reduce file path
 
 
 def reduce_file_path(path):
@@ -246,19 +182,6 @@ def reduce_file_path(path):
 
     return result
 
-# print (reduce_file_path("/home//radorado/code/./hackbulgaria/week0/../"))
-# print (reduce_file_path("/"))
-# print (reduce_file_path("/srv/../"))
-# print (reduce_file_path("/srv/www/htdocs/wtf/"))
-# print (reduce_file_path("/srv/www/htdocs/wtf"))
-# print (reduce_file_path("/srv/./././././"))
-# print (reduce_file_path("/etc//wtf/"))
-# print (reduce_file_path("/etc/../etc/../etc/../"))
-# print (reduce_file_path("//////////////"))
-# print (reduce_file_path("/../"))
-
-# Word from a^nb^n
-
 
 def is_an_bn(word):
     middle = len(word) // 2
@@ -272,16 +195,6 @@ def is_an_bn(word):
             return False
 
     return True
-
-# print (is_an_bn(""))
-# print (is_an_bn("rado"))
-# print (is_an_bn("aaabb"))
-# print (is_an_bn("aaabbb"))
-# print (is_an_bn("aabbaabb"))
-# print (is_an_bn("bbbaaa"))
-# print (is_an_bn("aaaaabbbbb"))
-
-# Credit card validation
 
 
 def is_credit_card_valid(number):
@@ -304,13 +217,6 @@ def is_credit_card_valid(number):
     return sum(number) % 10 == 0
 
 
-# print (is_credit_card_valid(79927398713))
-# print (is_credit_card_valid(79927398715))
-
-
-# Goldbach Conjecture
-
-
 def goldbach(n):
     result = []
     if n > 2 and n % 2 == 0:
@@ -319,15 +225,6 @@ def goldbach(n):
                 result.append((divisor, n - divisor))
 
     return result
-
-# print (goldbach(4))
-# print (goldbach(6))
-# print (goldbach(8))
-# print (goldbach(10))
-# print (goldbach(100))
-
-
-# Magic Square
 
 
 def magic_square(matrix):
@@ -354,29 +251,6 @@ def magic_square(matrix):
 
     return True
 
-# print (magic_square([[1, 2, 3],
-#                      [4, 5, 6],
-#                      [7, 8, 9]]))
-
-# print (magic_square([[4, 9, 2],
-#                      [3, 5, 7],
-#                      [8, 1, 6]]))
-
-# print (magic_square([[7, 12, 1, 14],
-#                      [2, 13, 8, 11],
-#                      [16, 3, 10, 5],
-#                      [9, 6, 15, 4]]))
-
-# print (magic_square([[23, 28, 21],
-#                      [22, 24, 26],
-#                      [27, 20, 25]]))
-
-# print (magic_square([[16, 23, 17],
-#                      [78, 32, 21],
-#                      [17, 16, 15]]))
-
-# Friday Years
-
 
 def is_leap(year):
     return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
@@ -395,7 +269,3 @@ def friday_years(start, end):
             if (date(year, 1, 1).isoweekday() == 5):
                 fridayYears += 1
     return fridayYears
-
-# print (friday_years(1000, 2000))
-# print (friday_years(1753, 2000))
-# print (friday_years(1990, 2015))
