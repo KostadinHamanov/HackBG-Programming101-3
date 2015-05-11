@@ -7,78 +7,86 @@ class Bill:
         if not isinstance(amount, int):
             raise TypeError
 
-        self.amount = amount
+        self.__amount = amount
 
     def __str__(self):
-        return 'A {}$ bill'.format(self.amount)
+        return 'A {}$ bill'. format(self.__amount)
 
     def __repr__(self):
         return self.__str__()
 
     def __int__(self):
-        return self.amount
+        return self.__amount
 
     def __eq__(self, other):
-        return self.amount == other.amount
+        return int(self) == int(other)
 
     def __hash__(self):
         return hash(self.__str__())
+
+    # Used for sorting
+    def __lt__(self, other):
+        return int(self) < int(other)
 
 
 class BatchBill:
 
     def __init__(self, bills):
-        self.bills = bills
+        self.__bills = bills
 
     def __len__(self):
-        return len(self.bills)
+        return len(self.__bills)
 
     def __int__(self):
         return self.total()
 
-    def total(self):
-        total = 0
-        for bill in self.bills:
-            total += int(bill)
-        return total
-
     def __getitem__(self, index):
-        return self.bills[index]
+        return self.__bills[index]
+
+    def total(self):
+        return sum([int(bill) for bill in self.__bills])
 
 
 class CashDesk:
 
     def __init__(self):
-        self.vault = []
+        self.money_holder = {}
 
-    def take_money(self, currency):
-        self.vault.append(currency)
+    def __store_money(self, bill):
+        if bill not in self.money_holder:
+            self.money_holder[bill] = 1
+        else:
+            self.money_holder[bill] += 1
+
+    def take_money(self, money):
+        if isinstance(money, Bill):
+            self.__store_money(money)
+        elif isinstance(money, BatchBill):
+            for bill in money:
+                self.__store_money(bill)
 
     def total(self):
-        total_sum = 0
-        for money in self.vault:
-            total_sum += int(money)
-
-        return total_sum
+        m = self.money_holder
+        return sum([int(bill) * m[bill] for bill in m])
 
     def inspect(self):
-        money_holder = {}
-        for batch in self.vault:
-            if isinstance(batch, BatchBill):
-                for bill in batch:
-                    if bill in money_holder.keys():
-                        money_holder[bill] += 1
-                    else:
-                        money_holder[bill] = 1
-            else:
-                if batch in money_holder.keys():
-                    money_holder[batch] += 1
-                else:
-                    money_holder[batch] = 1
+        lines = []
+        total = self.total()
 
-        print ("We have a total of {}$ in the desk".format(self.total()))
-        print ("We have the following count of bills")
-        print (money_holder)
+        lines.append("We have {}$ in the desk.".format(total))
+
+        if total > 0:
+            lines.append("Bills are:")
+
+            bills = list(self.money_holder.keys())
+            bills.sort()
+
+            for bill in bills:
+                line = "{}$ bills - {}". format(
+                    int(bill), self.money_holder[bill])
+                lines.append(line)
+
+        return "\n".join(lines)
 
 
 def main():
@@ -86,7 +94,6 @@ def main():
     john = Bill(1000)
 
     print (peter)
-    print (peter.amount)
     print (peter == john)
     print (hash(str(peter)))
 
@@ -104,8 +111,8 @@ def main():
     desk.take_money(batch)
     desk.take_money(Bill(10))
 
-    print (desk.total())  # 390
-    desk.inspect()
+    print (desk.total())
+    print (desk.inspect())
 
 if __name__ == '__main__':
     main()

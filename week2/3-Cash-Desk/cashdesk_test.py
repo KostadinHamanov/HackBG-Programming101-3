@@ -1,32 +1,27 @@
-from cashdesk import Bill
-
-
 import unittest
+from cashdesk import Bill, BatchBill, CashDesk
 
 
 class TestCashDesk(unittest.TestCase):
 
+    def setUp(self):
+        self.test_bill = Bill(10)
+
     def test_create_new_bill_class(self):
-        bill = Bill(10)
-        self.assertTrue(isinstance(bill, Bill))
+        self.assertTrue(isinstance(self.test_bill, Bill))
 
     def test_create_int_value_from_bill(self):
-        bill = Bill(10)
-        self.assertEqual(int(bill), 10)
+        self.assertEqual(int(self.test_bill), 10)
 
     def test_amount_in_bill(self):
-        bill = Bill(10)
-        self.assertTrue(bill.amount, 10)
+        with self.assertRaises(AttributeError):
+            self.test_bill.amount
 
     def test_str_dunder_for_bill(self):
-        bill = Bill(10)
-
-        self.assertEqual(str(bill), "A 10$ bill")
+        self.assertEqual(str(self.test_bill), "A 10$ bill")
 
     def test_repr_dunder_for_bill(self):
-        bill = Bill(10)
-
-        self.assertEqual(repr(bill), "A 10$ bill")
+        self.assertEqual(repr(self.test_bill), "A 10$ bill")
 
     def test_eq_between_bills_when_not_same(self):
         bill1 = Bill(10)
@@ -54,15 +49,77 @@ class TestCashDesk(unittest.TestCase):
 
     def test_value_error_raises_from_negative_amount(self):
         with self.assertRaises(ValueError):
-            bill = Bill(-10)
+            Bill(-10)
 
     def test_value_error_raises_from_zero_amount(self):
         with self.assertRaises(ValueError):
-            bill = Bill(0)
+            Bill(0)
 
     def test_type_error_raises_from_float_amount(self):
         with self.assertRaises(TypeError):
-            bill = Bill(0.5)
+            Bill(0.5)
+
+    def test_can_create_billbatch(self):
+        batch = BatchBill([])
+        self.assertTrue(isinstance(batch, BatchBill))
+
+    def test_can_create_billbatch_with_bills(self):
+        bills = [Bill(value) for value in range(1, 10)]
+        batch = BatchBill(bills)
+
+        self.assertEqual(len(batch), len(range(1, 10)))
+        self.assertEqual(batch.total(), sum(range(10)))
+
+    def test_can_for_loop_a_billbatch(self):
+        bills = [Bill(value) for value in range(1, 10)]
+        batch = BatchBill(bills)
+        total = 0
+
+        for bill in batch:
+            total += int(bill)
+
+        self.assertEqual(total, sum(range(1, 10)))
+
+    def test_can_create_cashdesh(self):
+        desk = CashDesk()
+        self.assertTrue(isinstance(desk, CashDesk))
+
+    def test_cashdesk_take_only_bills(self):
+        desk = CashDesk()
+
+        desk.take_money(Bill(10))
+        desk.take_money(Bill(5))
+
+        self.assertEqual(desk.total(), 15)
+
+    def test_cashdesk_take_only_batch(self):
+        desk = CashDesk()
+        batch = BatchBill([Bill(10), Bill(5)])
+
+        desk.take_money(batch)
+
+        self.assertEqual(desk.total(), 15)
+
+    def test_inspect_on_empty_desk(self):
+        desk = CashDesk()
+        expected = "We have 0$ in the desk."
+
+        self.assertEqual(desk.inspect(), expected)
+
+    def test_inspect_with_full_desk(self):
+        desk = CashDesk()
+
+        desk.take_money(Bill(1))
+        desk.take_money(Bill(2))
+        desk.take_money(Bill(10))
+
+        expected = ["We have 13$ in the desk."]
+        expected.append("Bills are:")
+        expected.append("1$ bills - 1")
+        expected.append("2$ bills - 1")
+        expected.append("10$ bills - 1")
+
+        self.assertEqual("\n".join(expected), desk.inspect())
 
 
 if __name__ == '__main__':
