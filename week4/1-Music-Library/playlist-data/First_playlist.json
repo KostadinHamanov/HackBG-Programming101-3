@@ -1,0 +1,34 @@
+{
+    "name": "First_playlist",
+    "repeat": true,
+    "songs": [
+        {
+            "length": "3:44",
+            "artist": "Manowar",
+            "title": "Odin",
+            "minutes": 3,
+            "seconds": 44,
+            "album": "The Sons of Odin",
+            "hours": 0
+        },
+        {
+            "length": "3:46",
+            "artist": "Bon Jovi",
+            "title": "Its my life",
+            "minutes": 3,
+            "seconds": 46,
+            "album": "Crush",
+            "hours": 0
+        },
+        {
+            "length": "4:02",
+            "artist": "AC/DC",
+            "title": "Back In Black",
+            "minutes": 4,
+            "seconds": 2,
+            "album": "Back In Back",
+            "hours": 0
+        }
+    ],
+    "shuffle": true
+}
