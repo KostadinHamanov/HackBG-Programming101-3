@@ -65,7 +65,6 @@ class Playlist:
         while song in self.played_songs:
             song = random.choice(self.song_list)
 
-        # ???
         self.played_songs.add(song)
 
         if len(self.song_list) == len(self.played_songs):
@@ -146,25 +145,3 @@ class Playlist:
                 time.sleep(1)
         except Exception as e:
             print(e)
-
-# test_playlist = Playlist(name="First_playlist", repeat=True, shuffle=True)
-
-# odin = Song(title="Odin", artist="Manowar",
-#             album="The Sons of Odin", length="3:44")
-
-# its_my_life = Song(title="Its my life", artist="Bon Jovi",
-#                    album="Crush", length="3:46")
-
-# back_in_black = Song(title="Back In Black", artist="AC/DC",
-#                      album="Back In Back", length="4:02")
-
-# songs = [odin, its_my_life, back_in_black]
-# test_playlist.add_songs(songs)
-
-# test_playlist.save()
-
-# pp = Playlist.load("First_playlist.json")
-# print (pp.pprint_playlist())
-# print (pp.name == "First_playlist")
-
-# pp = Playlist.test_load("First_playlist.json")

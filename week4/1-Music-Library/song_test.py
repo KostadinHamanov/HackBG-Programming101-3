@@ -43,7 +43,7 @@ class TestSong(unittest.TestCase):
     def test_prepare_json(self):
         expected = {'artist': 'Manowar', 'title': 'Odin', 'hours': 0,
                     'length': '3:44', 'seconds': 44, 'minutes': 3,
-                    'album': 'The Sons of Odin'}
+                    'album': 'The Sons of Odin', 'path': ''}
 
         self.assertEqual(self.odin.prepare_json(), expected)
 

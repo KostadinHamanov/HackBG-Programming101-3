@@ -1,6 +1,5 @@
 import unittest
 from music_crawler import MusicCrawler
-import pprint
 
 
 class MusicCrawlerTest(unittest.TestCase):

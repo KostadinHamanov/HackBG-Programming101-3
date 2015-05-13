@@ -88,7 +88,10 @@ AC/DC     Back In Black  4:02"""
 
         expected_result = {
             "name": self.test_playlist.name,
-            "songs": song_dicts}
+            "songs": song_dicts,
+            "shuffle": self.test_playlist.shuffle,
+            "repeat": self.test_playlist.repeat
+            }
 
         self.assertEqual(self.test_playlist.prepare_json(), expected_result)
 

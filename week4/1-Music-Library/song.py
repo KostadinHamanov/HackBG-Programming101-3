@@ -4,6 +4,7 @@ class Song:
         self.title = title
         self.artist = artist
         self.album = album
+        self.path = ''
 
         self.seconds = 0
         self.minutes = 0
@@ -66,4 +67,3 @@ class Song:
         song_dict = self.__dict__
         return {key: song_dict[key]
                 for key in song_dict if not key.startswith("_")}
-

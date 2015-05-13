@@ -28,9 +28,6 @@ class MusicCrawler:
 
             playlist.add_song(song)
 
+            song.path = music_file
+
         return playlist
-
-
-# p = MusicCrawler("/home/kostadin/Music/Music-Library")
-
-# print (p.generate_playlist().pprint_playlist())
