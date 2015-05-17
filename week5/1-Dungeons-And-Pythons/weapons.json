@@ -1,0 +1,9 @@
+[
+    {"name": "Dagger", "damage": 45},
+    {"name": "Bow", "damage": 35},
+    {"name": "Hammer", "damage": 25},
+    {"name": "Spike", "damage": 15},
+    {"name": "Sword", "damage": 20},
+    {"name": "Knife", "damage": 10},
+    {"name": "Lance", "damage": 40}
+]
