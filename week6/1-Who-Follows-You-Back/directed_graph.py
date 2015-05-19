@@ -14,7 +14,7 @@ class DirectedGraph():
     def add_node(self, node):
         if node in self.graph:
             raise NodeAlreadyInGraph
-        self.graph[node] = set()
+        self.graph.update({node: set()})
 
     def get_info(self):
         return self.graph
@@ -59,10 +59,6 @@ class DirectedGraph():
         return visited
 
     def edge_between(self, node_a, node_b):
-        print ("node_b:")
-        print (node_b)
-        print ("self.graph[node_a]")
-        print (self.graph[node_a])
         if node_b in self.graph[node_a]:
             return True
         return False
