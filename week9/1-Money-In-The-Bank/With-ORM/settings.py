@@ -1,0 +1,5 @@
+DATABASE = "sqlite:///bank.db"
+BLOCK_AFTER_N_FAILED_ATTEMPTS = 5
+BLOCK_FOR_N_MINUTES = 5
+SALT = "Some magic salt for you"
+PASSWORD_MIN_LENGTH = 8
